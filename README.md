@@ -10,6 +10,6 @@ username,email id, and user has to vreate a password
 ![]()
  login page has 2 fields ,user has to enter the username and password 
  if both are correct then they will be taken to the a welcome page 
- ![]()
+ ![](regester.PNG)
  
 
