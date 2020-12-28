@@ -1,14 +1,15 @@
 <html>
     <head>
         <title>Resources for student's academics</title>
-        <link rel="stylesheet" href="style.css">
         
     </head>
     <body>
 <?php
  include 'conn.php';
+ #include 'errors.php';
  if(isset($_POST['submit']))
- {
+ {     
+         
         $username=mysqli_real_escape_string($con, $_POST['username']) ;
         $email= mysqli_real_escape_string($con, $_POST['email']) ;
         $password= mysqli_real_escape_string($con, $_POST['password']) ;
@@ -20,50 +21,32 @@
         $emailquery = "select * from ad_register where email ='$email'";
         $query  = mysqli_query($con,$emailquery);
         $emailcount = mysqli_num_rows($query);
-        if($emailcount>0)
-        {
-             echo "email already exists";
-        }
-        $usernamequery = "select * from ad_register where usename ='$username'";
+
+        $usernamequery = "select * from ad_register where username ='$username'";
         $userquery  = mysqli_query($con,$usernamequery);
         $usernamecount = mysqli_num_rows($userquery);
-        if($usernamecount>0)
-        {
-             echo "username already taken";
-        }
+        
+        if($emailcount>0 or $usernamecount>0){echo "email or username already exists or cannot enter blank username";}
+        
+        #if($usernamecount>0){echo "username already taken";}
         else
-          {
-               if($password === $cpassword)
-               {
-                $insertquery = "insert into ad_register(username,email,password,cpassword)
-                values('$username','$email','$pass','$cpass')";
-                $iquery = mysqli_query($con,$insertquery);
-                if($iquery)
-                   {
-                    ?>
-                    <script>
-                     alert(" inserted  sucessful");
-                    </script>
-                    <?php
-                   }
-                  else
-                   {
-                    ?>
-                    <script>
-                     alert("insertion not sucessful");
-                    </script>
-                    <?php
-                   }
-               }
-              else
-             { 
-              ?>
-              <script>
-               alert("password not match");
-              </script>
-              <?php
-             }      
-       }
+          {if($password === $cpassword)
+            {
+             $insertquery = "insert into ad_register(username,email,password,cpassword)
+             values('$username','$email','$pass','$cpass')";
+             $iquery = mysqli_query($con,$insertquery);
+             if($iquery)
+                {
+                  echo " inserted  sucessful";
+                 
+                }
+               else
+                {
+                    echo "insertion not sucessful";
+                }
+            }
+         }
+               
             
 }
         
