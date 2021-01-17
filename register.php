@@ -3,10 +3,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="style.css">
-    <title>Resources for student's academics</title>
+    <title>Study material for engineering students</title>
         
     </head>
     <body>
+    <h1><font color="#29b10e" >Study material for engineering students</font> <h1.
 <?php
  include 'conn.php';
  #include 'errors.php';
@@ -29,9 +30,10 @@
         $userquery  = mysqli_query($con,$usernamequery);
         $usernamecount = mysqli_num_rows($userquery);
         
-        if($emailcount>0 or $usernamecount>0){echo "email or username already exists or cannot enter blank username";}
+        if($emailcount>0 or $usernamecount>0){
+         echo "email or username already exists or cannot enter blank username";
+        }
         
-        #if($usernamecount>0){echo "username already taken";}
         else
           {if($password === $cpassword)
             {
