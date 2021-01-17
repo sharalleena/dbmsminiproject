@@ -1,7 +1,15 @@
-html{
-    background:radial-gradient(rgba(179,255,255,0.5),
-     rgba(255,255,255,0.5),rgba(0,0,0,0.5));
+html
+    {
+        background:radial-gradient(rgba(179,255,255,0.5),
+         rgba(255,255,255,0.5),rgba(0,0,0,0.5));
+    }
+
+.registration-page{
+    width: 360px;
+    padding: 10% 0 0;
+    margin: auto;                 
 }
+
 .form{
     position: relative;
     background: rgba(0, 19, 9, 0.219);
@@ -10,6 +18,19 @@ html{
     padding: 45px;
     text-align: center;
 }
+
+.form input{
+    font-family: sans-serif;
+    background: #d6f71d;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    font-size: 14px;
+    font-style: oblique;
+}
+
 .form button{
     font-family: "montserrat",sans-serif;
     text-transform: uppercase;
@@ -21,4 +42,10 @@ html{
     cursor: pointer;
     background-image:linear-gradient(to left,#FFC312,#EE5A24,#FFC312);
 
+}
+
+.form p{
+    font-style: oblique;
+    font-size: 20px;
+    color: #d107fa;
 }
