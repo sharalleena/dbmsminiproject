@@ -1,55 +1,67 @@
-body {
-    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(pic3.jpg);
-    height: 100px;
-    background-size: cover;
-    background-position: center;
+<?php
+session_start();
+?>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="style.css">
+    <title>login system!</title>
+  </head>
+  <body>
+  <?php
+  include 'conn.php';
+
+  if(isset($_POST['submit'])){
+      $username=$_POST['username'];
+      $password=$_POST['password'];
+
+      $username_search="select * from ad_register where username = '$username' ";
+      $query=mysqli_query($con,$username_search);
+      $username_count=mysqli_num_rows($query);
+      if($username_count){
+        $usernmae_pass = mysqli_fetch_assoc($query);
+        $db_pass=$usernmae_pass['password'];
+        $pass_decode=password_verify($password,$db_pass);
+           if($pass_decode)
+           {
+            echo "login successful";
+            ?>
+            <script>
+                location.replace("dash.php");
+            </script>
+            <?php
+           }
+           else
+            {
+               echo "password incorrect or you have not registered before";
+               ?>
+            <script>
+                location.replace("start.html");
+            </script>
+            <?php
+               
+            }
+            
+        }
+        else{
+            echo "invalid email";
+        }
     
-}
-
-.registration-page{
-    width: 360px;
-    padding: 10% 0 0;
-    margin: auto;                 
-}
-
-.form{
-    position: relative;
-    background: rgba(0, 19, 9, 0.219);
-    max-width:360px;
-    margin: 0 auto 100px;
-    padding: 45px;
-    text-align: center;
-}
-
-.form input{
-    font-family: sans-serif;
-    background: #d6f71d;
-    width: 100%;
-    border: 0;
-    outline: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    font-size: 14px;
-    font-style: oblique;
-}
-
-.form button{
-    font-family: "montserrat",sans-serif;
-    text-transform: uppercase;
-    width;: 100%;
-    border: none;
-    padding: 15px;
-    font-size: 14px;
-    color: "ffffff";
-    cursor: pointer;
-    background-image:linear-gradient(to left,#FFC312,#EE5A24,#FFC312);
-
-}
-
-.form p{
-    font-style: oblique;
-    font-size: 20px;
-    color: #d107fa;
-}
-
+  }
+?>
+<div class="registration-page">
+            <div class="form">
+                <p ><font size="+4" color="#29b10e" font-style="oblique">log in</font> </p>
+                 <form class="register-form" action="" 
+                  method="POST">
+                    <input type="text" name="username" placeholder="USERNAME"/>
+                    <input type="password"name="password" placeholder="PASSWORD"/>
+                    <button type="submit" name="submit" >Submit</button>
+                </form>
+            </div>
+        </div>
+  </body>
+</html>
 
